@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %}Mis Puntos{% endblock %}
+
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Temas</a></li>
+    <li class="breadcrumb-item active">Mis puntos</li>
+{% endblock %}
+
+
+{% block content %}
+    <table class="table table-striped mb-4">
+        <thead class="thead-striped">
+        <tr>
+            <td>User</td>
+            <td>Puntos</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for point in points %}
+            <tr>
+                <td>{{ point.user_points.username }}</td>
+                <td>{{ point.points }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

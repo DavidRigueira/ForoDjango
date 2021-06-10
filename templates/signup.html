@@ -1,0 +1,23 @@
+{% extends 'base_accounts.html' %}
+
+{% block title %}Regístrese en The Community Foro{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Inscribirse</h3>
+          <form method="post" novalidate>
+            {% csrf_token %}
+            {% include 'includes/form.html' %}
+            <button type="submit" class="btn btn-danger btn-block">Crea una cuenta</button>
+          </form>
+        </div>
+        <div class="card-footer text-muted text-center">
+          ¿Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar sesións</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

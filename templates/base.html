@@ -1,0 +1,271 @@
+{% load static %}<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Foro CEBEM{% endblock %}</title>
+    <link rel='stylesheet' type='text/css'
+          href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer-v1.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/whatsapp/floating-wpp.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/cookieBar/cookieBar.css' %}">
+    {% block stylesheet %}{% endblock %}
+</head>
+<body>
+{% block body %}
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/logo-grafico-Cebem.png' %}" height="50"
+                                                                     width="50"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu"
+                        aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    {% if user.is_authenticated %}
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+                                    {{ user.username }}
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                                    <a class="dropdown-item" href="{% url 'my_account' %}">Mi cuenta</a>
+                                    <a class="dropdown-item" href="{% url 'password_change' %}">Cambiar contraseña</a>
+                                    <a class="dropdown-item" href="{% url 'points_user' %}">Mis puntos</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">Desconectarse</a>
+                                </div>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <form class="form-inline ml-auto">
+                            <a href="{% url 'login' %}" class="btn btn-outline-secondary">Iniciar Sesion</a>
+                            <a href="{% url 'signup' %}" class="btn btn-danger ml-2">Registrarse</a>
+                        </form>
+                    {% endif %}
+                </div><!-- fin collapse del navbar-collapse -->
+            </div><!-- fin container del nav -->
+        </nav>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="float: right">
+             <p>inicio adsense</p>
+
+            <script type="text/javascript">
+            google_ad_client = "ca-pub-XXXXX";
+            google_ad_slot = "XXXXXX";
+            google_ad_width = 728;
+            google_ad_height = 90;
+            </script>
+            <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+
+        <p>fin adsense</p>
+        </div>
+        <div style="float: left">
+            <p>inicio adsense</p>
+
+                <script type="text/javascript">
+                google_ad_client = "ca-pub-XXXXX";
+                google_ad_slot = "XXXXXX";
+                google_ad_width = 728;
+                google_ad_height = 90;
+                </script>
+                <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                </script>
+
+            <p>fin adsense</p>
+        </div>
+        <div class="container">
+            <div id="google_translate_element" class="google"></div>
+            <ol class="breadcrumb my-4">
+                {% block breadcrumb %}
+                {% endblock %}
+            </ol>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div><!-- fin de wrapper -->
+
+    <br>
+    <br>
+    <!--=== Footer Version 1 ===-->
+    <div class="footer-v1">
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- About -->
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="headline"><h2>CPR Cebem</h2></div>
+                        <ul class="list-unstyled latest-list">
+                            <li>
+                                <p>Tu Centro de Formacion.</p>
+                            </li>
+                            <li>
+                                <p>El Centro de Formación Profesional CEBEM viene desarrollando la labor de docencia formando alumnos desde 1977</p>
+                            </li>
+                        </ul>
+                    </div><!--/col-md-3-->
+                    <!-- End About -->
+                    <!-- Link List -->
+                    <div class="col-md-4 md-margin-bottom-40">
+                        <div class="headline"><h2>Accesos Rápidos</h2></div>
+                        <ul class="list-unstyled link-list">
+                            <li><a href="#">HOME</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">QUIENES SOMOS</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">AGENDA</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">DESCUENTOS</a><i class="fa fa-angle-right"></i></li>
+                            <li><a href="#">CONTACTO</a><i class="fa fa-angle-right"></i></li>
+                        </ul>
+                    </div><!--/col-md-3-->
+                    <!-- End Link List -->
+
+                    <!-- Address -->
+                    <div class="col-md-4 map-img md-margin-bottom-40">
+                        <div class="headline"><h2>Contacto</h2></div>
+                        <address class="md-margin-bottom-40">
+                            Av. Hispanidade, 33, Vigo <br/>
+                            Pontevedra, ES <br/>
+                            Teléfono: <a href="tel:+34634365528">986 41 98 99</a><br/>
+                            Email: <a href="secretaria@cebem.net">
+                            secretaria@cebem.net </a><br/>
+                        </address>
+                    </div><!--/col-md-3-->
+                    <!-- End Address -->
+                </div>
+            </div>
+        </div><!--/footer-->
+
+        <div class="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>
+                            <p style="font-size: 9px">2017 Cebem S.L. <a href="#">Política de privacidad</a> | <a href="#">Política de cookies</a></p>
+                        </h6>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="col-md-6">
+                        <ul class="social-icons" id="l2">
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-skype"></i>
+                                </a>
+                            </li>
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                            </li>
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li style="float:left; width:70px;">
+                                <a href="#" class="social-icons">
+                                    <i class="fa fa-dribbble"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- End Social Links -->
+                </div>
+            </div>
+        </div><!--/copyright-->
+    </div>
+    <!--=== End Footer Version 1 ===-->
+    <div class="go-top-container">
+        <div class="go-top-button">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+    </div>
+    <div class="floating-wpp"></div>
+    <div class="cookie-message">
+        Éste sitio web usa cookies, si permanece aquí acepta su uso. Puede leer más sobre el uso de cookies en nuestra
+        <a href="#">política de cookies</a> <a class="my-close-button" href>Aceptar</a>
+    </div>
+
+{% endblock body %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/8277ae59df.js" crossorigin="anonymous"></script>
+<script src="{% static 'plugins/whatsapp/floating-wpp.min.js' %}"></script>
+<script src="{% static 'plugins/cookieBar/jquery.cookieBar.js' %}"></script>
+<script src="{% static 'js/gotop.js' %}"></script>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'es',
+            includedLanguages: 'ca,eu,gl,en,fr,it,pt,de',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            gaTrack: true
+        }, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.cookie-message').cookieBar({closeButton: '.my-close-button', hideOnClose: false});
+        $('.cookie-message').on('cookieBar-close', function () {
+            $(this).slideUp();
+        });
+    });
+
+    $(function () {
+        $('.floating-wpp').floatingWhatsApp({
+            phone: '+34xxxxxxxxx',
+            popupMessage: 'Escríbenos sin dudarlo',
+            showPopup: true,
+            message: 'Tengo una duda',
+            headerTitle: '¿Tienes alguna duda?',
+            position: 'right',
+            size: '50px'
+        });
+    });
+</script>
+
+{% block javascript %}{% endblock %}
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42049022-13"></script>
+<script>window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+gtag('config', 'UA-42049022-13');</script>
+</body>
+</html>
