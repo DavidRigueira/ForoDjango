@@ -4,6 +4,11 @@ from .models import Post, Topic, Category
 
 
 class NewTopicForm(forms.ModelForm):
+    category = forms.ModelChoiceField(
+        queryset=None,
+        required=False,
+        empty_label='Sin categoría (se usará la predeterminada)'
+    )
     message = forms.CharField(
         widget=forms.Textarea(
             attrs={'rows': 5, 'placeholder': '¿Qué tienes en mente?'}
@@ -11,6 +16,10 @@ class NewTopicForm(forms.ModelForm):
         max_length=4000,
         help_text='La longitud máxima del texto es 4000.'
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].queryset = Category.objects.all()
 
     class Meta:
         model = Topic

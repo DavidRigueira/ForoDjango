@@ -1,5 +1,3 @@
-from lib2to3.fixes.fix_input import context
-
 from django.db.models import Count, Q
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -69,6 +67,9 @@ def new_topic(request, pk):
             topic = form.save(commit=False)
             topic.board = board
             topic.starter = request.user
+            if topic.category_id is None:
+                category, _ = Category.objects.get_or_create(category='General')
+                topic.category = category
             topic.save()
             Post.objects.create(
                 message=form.cleaned_data.get('message'),
